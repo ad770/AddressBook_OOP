@@ -16,7 +16,7 @@ class KsiazkaAdresowa {
     Menu menu;
     int idZalogowanegoUzytkownika;
     int idOstatniegoAdresata;
-
+    char wybor;
 
 public:
     KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
@@ -89,7 +89,6 @@ public:
 //        uzytkownikMenedzer.wybierzOpcjeZMenuGlownego();
     };
 
-    char wybor;
     void rejestracjaUzytkownika();
     void logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
