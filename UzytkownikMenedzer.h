@@ -7,8 +7,10 @@
 #include <fstream>
 #include <sstream>
 
+#include "Adresat.h"
 #include "Uzytkownik.h"
 #include "PlikZUzytkownikami.h"
+#include "MetodyPomocnicze.h"
 
 using namespace std;
 
@@ -23,10 +25,13 @@ class UzytkownikMenedzer {
 
 public:
     UzytkownikMenedzer(string nazwaPlkuZUzytkownikami) : plikZUzytkownikami(nazwaPlkuZUzytkownikami) {};
+
     void rejestracjaUzytkownika();
+    int logowanieUzytkownika();
+    void zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUzytkownika);
+    void wylogujUzytkownika();
     void wypiszWszystkichUzytkownikow();
     void wczytajUzytkownikowZPliku();
-
 };
 
 #endif // UZYTKOWNIKMENEDZER_H
