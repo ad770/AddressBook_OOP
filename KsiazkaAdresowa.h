@@ -6,6 +6,7 @@
 #include "UzytkownikMenedzer.h"
 #include "AdresatMenedzer.h"
 #include "Menu.h"
+#include "PlikZAdresatami.h"
 
 using namespace std;
 
@@ -13,6 +14,9 @@ class KsiazkaAdresowa {
     UzytkownikMenedzer uzytkownikMenedzer;
     AdresatMenedzer adresatMenedzer;
     Menu menu;
+    int idZalogowanegoUzytkownika;
+    int idOstatniegoAdresata;
+
 
 public:
     KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
@@ -48,6 +52,7 @@ public:
 //                    // to nie bedziemy musieli jeszcze raz ustalac idOstatniegoAdresata
 //                    idOstatniegoAdresata = wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
                 adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
+                idOstatniegoAdresata=adresatMenedzer.pobierzZPlikuIdOstatniegoAdresata();
                 wybor = menu.wybierzOpcjeZMenuUzytkownika();
 
                 switch (wybor) {
@@ -83,8 +88,6 @@ public:
 
 //        uzytkownikMenedzer.wybierzOpcjeZMenuGlownego();
     };
-    int idZalogowanegoUzytkownika;
-    int idOstatniegoAdresata;
 
     char wybor;
     void rejestracjaUzytkownika();

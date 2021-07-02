@@ -26,6 +26,7 @@ public:
     int dodajAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata);
     void wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
     void wyswietlWszystkichAdresatow();
+    int pobierzZPlikuIdOstatniegoAdresata();
 };
 
 #endif // ADRESATMENEDZER_H

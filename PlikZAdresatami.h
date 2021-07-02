@@ -23,6 +23,8 @@ public:
 
     void dopiszAdresataDoPliku(Adresat adresat);
     vector <Adresat> wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
+    int pobierzZPlikuIdOstatniegoAdresata();
+
 };
 
 #endif // PLIKZADRESATAMI_H
