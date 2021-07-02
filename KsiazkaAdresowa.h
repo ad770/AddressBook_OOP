@@ -19,10 +19,9 @@ public:
         : uzytkownikMenedzer(nazwaPlikuZUzytkownikami),
           adresatMenedzer(nazwaPlikuZAdresatami) {
         uzytkownikMenedzer.wczytajUzytkownikowZPliku();
-        int idZalogowanegoUzytkownika=0;
-        int idOstatniegoAdresata=0;
+        idZalogowanegoUzytkownika=0;
+        idOstatniegoAdresata=0;
 
-        char wybor;
         while (true) {
             if (idZalogowanegoUzytkownika == 0) {
                 wybor = menu.wybierzOpcjeZMenuGlownego();
@@ -48,7 +47,7 @@ public:
 //                    // Dzieki temu, kiedy uztykwonik bedzie dodawal nowego adresata
 //                    // to nie bedziemy musieli jeszcze raz ustalac idOstatniegoAdresata
 //                    idOstatniegoAdresata = wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
-
+                adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
                 wybor = menu.wybierzOpcjeZMenuUzytkownika();
 
                 switch (wybor) {
@@ -84,7 +83,10 @@ public:
 
 //        uzytkownikMenedzer.wybierzOpcjeZMenuGlownego();
     };
+    int idZalogowanegoUzytkownika;
+    int idOstatniegoAdresata;
 
+    char wybor;
     void rejestracjaUzytkownika();
     void logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();

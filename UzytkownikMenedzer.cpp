@@ -29,7 +29,6 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
                     return itr -> pobierzId();
-                       // idZalogowanegoUzytkownika = uzytkownik.pobierzId();
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;

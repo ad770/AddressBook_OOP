@@ -9,8 +9,7 @@
 
 using namespace std;
 
-class PlikZAdresatami
-{
+class PlikZAdresatami {
     const string nazwaPlikuZAdresatami;
 
     bool czyPlikJestPusty(fstream &plikTekstowy);
@@ -23,8 +22,7 @@ public:
     PlikZAdresatami(string NAZWAPLIKUZADRESATAMI) : nazwaPlikuZAdresatami(NAZWAPLIKUZADRESATAMI) {};
 
     void dopiszAdresataDoPliku(Adresat adresat);
-    int wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
-
+    vector <Adresat> wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
 };
 
 #endif // PLIKZADRESATAMI_H

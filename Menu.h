@@ -9,7 +9,7 @@ using namespace std;
 
 class Menu {
 public:
-    char wybierzOpcjeZMenuEdycja();
+//    char wybierzOpcjeZMenuEdycja();
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();
 };
