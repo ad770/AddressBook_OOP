@@ -1,21 +1,30 @@
 #include "PlikZUzytkownikami.h"
 
-void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
-    fstream plikTekstowy;
-    string liniaZDanymiUzytkownika = "";
-    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::app);
+Uzytkownik PlikZUzytkownikami::pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
+    Uzytkownik uzytkownik;
+    string pojedynczaDanaUzytkownika = "";
+    int numerPojedynczejDanejUzytkownika = 1;
 
-    if (plikTekstowy.good() == true) {
-        liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
-
-        if (czyPlikJestPusty(plikTekstowy) == true) {
-            plikTekstowy << liniaZDanymiUzytkownika;
+    for (int pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++) {
+        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|') {
+            pojedynczaDanaUzytkownika += daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku];
         } else {
-            plikTekstowy << endl << liniaZDanymiUzytkownika ;
+            switch(numerPojedynczejDanejUzytkownika) {
+            case 1:
+                uzytkownik.ustawId(atoi(pojedynczaDanaUzytkownika.c_str()));
+                break;
+            case 2:
+                uzytkownik.ustawLogin(pojedynczaDanaUzytkownika);
+                break;
+            case 3:
+                uzytkownik.ustawHaslo(pojedynczaDanaUzytkownika);
+                break;
+            }
+            pojedynczaDanaUzytkownika = "";
+            numerPojedynczejDanejUzytkownika++;
         }
-    } else
-        cout << "Nie udalo sie otworzyc pliku " << nazwaPlikuZUzytkownikami << " i zapisac w nim danych." << endl;
-    plikTekstowy.close();
+    }
+    return uzytkownik;
 }
 
 bool PlikZUzytkownikami::czyPlikJestPusty(fstream &plikTekstowy) {
@@ -53,31 +62,22 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
     return uzytkownicy;
 }
 
-Uzytkownik PlikZUzytkownikami::pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
-    Uzytkownik uzytkownik;
-    string pojedynczaDanaUzytkownika = "";
-    int numerPojedynczejDanejUzytkownika = 1;
+void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
+    fstream plikTekstowy;
+    string liniaZDanymiUzytkownika = "";
+    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::app);
 
-    for (int pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++) {
-        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|') {
-            pojedynczaDanaUzytkownika += daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku];
+    if (plikTekstowy.good() == true) {
+        liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
+
+        if (czyPlikJestPusty(plikTekstowy) == true) {
+            plikTekstowy << liniaZDanymiUzytkownika;
         } else {
-            switch(numerPojedynczejDanejUzytkownika) {
-            case 1:
-                uzytkownik.ustawId(atoi(pojedynczaDanaUzytkownika.c_str()));
-                break;
-            case 2:
-                uzytkownik.ustawLogin(pojedynczaDanaUzytkownika);
-                break;
-            case 3:
-                uzytkownik.ustawHaslo(pojedynczaDanaUzytkownika);
-                break;
-            }
-            pojedynczaDanaUzytkownika = "";
-            numerPojedynczejDanejUzytkownika++;
+            plikTekstowy << endl << liniaZDanymiUzytkownika ;
         }
-    }
-    return uzytkownik;
+    } else
+        cout << "Nie udalo sie otworzyc pliku " << nazwaPlikuZUzytkownikami << " i zapisac w nim danych." << endl;
+    plikTekstowy.close();
 }
 
 void PlikZUzytkownikami::zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy)
@@ -111,4 +111,3 @@ void PlikZUzytkownikami::zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik>
     }
     plikTekstowy.close();
 }
-

@@ -6,6 +6,7 @@
 
 #include "Adresat.h"
 #include "MetodyPomocnicze.h"
+#include "PlikZUzytkownikami.h"
 
 using namespace std;
 
