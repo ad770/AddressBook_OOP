@@ -12,30 +12,25 @@ using namespace std;
 
 class KsiazkaAdresowa {
     UzytkownikMenedzer uzytkownikMenedzer;
-    AdresatMenedzer adresatMenedzer;
+    AdresatMenedzer *adresatMenedzer;
     Menu menu;
-    int idZalogowanegoUzytkownika;
-    int idOstatniegoAdresata;
+    const string NAZWA_PLIKU_Z_ADRESATAMI;
     char wybor;
 
 public:
     KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
-        : uzytkownikMenedzer(nazwaPlikuZUzytkownikami),
-          adresatMenedzer(nazwaPlikuZAdresatami) {
-        uzytkownikMenedzer.wczytajUzytkownikowZPliku();
-        idZalogowanegoUzytkownika=0;
-        idOstatniegoAdresata=0;
+        : uzytkownikMenedzer(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami) {
+        adresatMenedzer = NULL;
 
         while (true) {
-            if (idZalogowanegoUzytkownika == 0) {
+            if (!uzytkownikMenedzer.czyUzytkownikJestZalogowany()) {
                 wybor = menu.wybierzOpcjeZMenuGlownego();
-
                 switch (wybor) {
                 case '1':
-                    uzytkownikMenedzer.rejestracjaUzytkownika();
+                    rejestracjaUzytkownika();
                     break;
                 case '2':
-                    idZalogowanegoUzytkownika = uzytkownikMenedzer.logowanieUzytkownika();
+                    logowanieUzytkownika();
                     break;
                 case '9':
                     exit(0);
@@ -46,51 +41,45 @@ public:
                     break;
                 }
             } else {
-//                if (adresaci.empty() == true)
-//                    // Pobieramy idOstatniegoAdresata, po to aby zoptymalizowac program.
-//                    // Dzieki temu, kiedy uztykwonik bedzie dodawal nowego adresata
-//                    // to nie bedziemy musieli jeszcze raz ustalac idOstatniegoAdresata
-//                    idOstatniegoAdresata = wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
-                adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
-                idOstatniegoAdresata=adresatMenedzer.pobierzZPlikuIdOstatniegoAdresata();
                 wybor = menu.wybierzOpcjeZMenuUzytkownika();
 
                 switch (wybor) {
                 case '1':
-                    adresatMenedzer.dodajAdresata(idZalogowanegoUzytkownika, idOstatniegoAdresata);
+                    dodajAdresata();
                     break;
                 case '2':
-                    //wyszukajAdresatowPoImieniu(adresaci);
                     break;
                 case '3':
-                    //wyszukajAdresatowPoNazwisku(adresaci);
                     break;
                 case '4':
-                    adresatMenedzer.wyswietlWszystkichAdresatow();
+                    wyswietlWszystkichAdresatow();
                     break;
                 case '5':
-                    //idUsunietegoAdresata = usunAdresata(adresaci);
-                    //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
                     break;
                 case '6':
-                    //edytujAdresata(adresaci);
                     break;
                 case '7':
-                    uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika(idZalogowanegoUzytkownika);
+                    zmianaHaslaZalogowanegoUzytkownika();
                     break;
                 case '8':
-                    idZalogowanegoUzytkownika = 0;
-//                    adresaci.clear();
+                    wylogowanieUzytkownika();
                     break;
                 }
             }
         }
-
-//        uzytkownikMenedzer.wybierzOpcjeZMenuGlownego();
     };
+
+    ~KsiazkaAdresowa() {
+        delete adresatMenedzer;
+        adresatMenedzer = NULL;
+    }
 
     void rejestracjaUzytkownika();
     void logowanieUzytkownika();
+    void wylogowanieUzytkownika();
+    void dodajAdresata();
+    void zmianaHaslaZalogowanegoUzytkownika();
+    void wyswietlWszystkichAdresatow();
     void wypiszWszystkichUzytkownikow();
 };
 

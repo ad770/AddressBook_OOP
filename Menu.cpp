@@ -1,24 +1,5 @@
 #include "Menu.h"
 
-//char Menu::wybierzOpcjeZMenuEdycja()
-//{
-//    char wybor;
-//
-//    cout << endl << "   >>> MENU  EDYCJA <<<" << endl;
-//    cout << "---------------------------" << endl;
-//    cout << "Ktore dane zaktualizowac: " << endl;
-//    cout << "1 - Imie" << endl;
-//    cout << "2 - Nazwisko" << endl;
-//    cout << "3 - Numer telefonu" << endl;
-//    cout << "4 - Email" << endl;
-//    cout << "5 - Adres" << endl;
-//    cout << "6 - Powrot " << endl;
-//    cout << endl << "Twoj wybor: ";
-//    wybor = MetodyPomocnicze::wczytajZnak();
-//
-//    return wybor;
-//}
-
 char Menu::wybierzOpcjeZMenuGlownego()
 {
     char wybor;
