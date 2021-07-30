@@ -11,6 +11,7 @@ class Menu {
 public:
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();
+    char wybierzOpcjeZMenuEdycja();
 };
 
 #endif // MENU_H

@@ -48,15 +48,19 @@ public:
                     dodajAdresata();
                     break;
                 case '2':
+                    wyszukajAdresatowPoImieniu();
                     break;
                 case '3':
+                    wyszukajAdresatowPoNazwisku();
                     break;
                 case '4':
                     wyswietlWszystkichAdresatow();
                     break;
                 case '5':
+                    usunAdresata();
                     break;
                 case '6':
+                    edytujAdresata();
                     break;
                 case '7':
                     zmianaHaslaZalogowanegoUzytkownika();
@@ -78,6 +82,10 @@ public:
     void logowanieUzytkownika();
     void wylogowanieUzytkownika();
     void dodajAdresata();
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
+    void edytujAdresata();
+    void usunAdresata();
     void zmianaHaslaZalogowanegoUzytkownika();
     void wyswietlWszystkichAdresatow();
     void wypiszWszystkichUzytkownikow();

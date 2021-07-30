@@ -16,6 +16,11 @@ public:
     static string pobierzLiczbe(string tekst, int pozycjaZnaku);
     static string wczytajLinie();
     static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
+    static int wczytajLiczbeCalkowita();
+    static void zmienNazwePliku(string staraNazwa, string nowaNazwa);
+    static void usunPlik(string nazwaPlikuZRozszerzeniem);
+
+
 };
 
 #endif // METODYPOMOCNICZE_H

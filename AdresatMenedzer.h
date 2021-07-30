@@ -10,6 +10,7 @@
 #include "Adresat.h"
 #include "PlikZAdresatami.h"
 #include "MetodyPomocnicze.h"
+#include "Menu.h"
 
 using namespace std;
 
@@ -17,9 +18,21 @@ class AdresatMenedzer {
     const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
     vector <Adresat> adresaci;
     PlikZAdresatami plikZAdresatami;
+    Menu menu;
+    string nazwaPlikuZUzytkownikami = "Uzytkownicy.txt";
+    string nazwaPlikuZAdresatami = "Adresaci.txt";
+    string nazwaTymczasowegoPlikuZAdresatami = "Adresaci_tymczasowo.txt";
+
 
     Adresat podajDaneNowegoAdresata();
     void wyswietlDaneAdresata(Adresat adresat);
+    void usunWybranegoAdresataZPliku(int idUsuwanegoAdresata);
+    int podajIdWybranegoAdresata();
+    void edytujAdresataWPliku(int numerEdytowanejLinii, string liniaZDanymiAdresataOddzielonePionowymiKreskami);
+    void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
+    string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
+    void zaktualizujDaneWybranegoAdresata(Adresat adresat);
+
 
 public:
     AdresatMenedzer(string nazwaPlkuZAdresatami, int idZalogowanegoUzytkownika)
@@ -28,7 +41,11 @@ public:
     };
 
     void dodajAdresata();
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
     void wyswietlWszystkichAdresatow();
+    void usunAdresata();
+    void edytujAdresata();
 };
 
 #endif // ADRESATMENEDZER_H

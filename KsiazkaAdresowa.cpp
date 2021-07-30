@@ -27,6 +27,14 @@ void KsiazkaAdresowa::dodajAdresata() {
     }
 }
 
+void KsiazkaAdresowa::wyszukajAdresatowPoImieniu() {
+    adresatMenedzer->wyszukajAdresatowPoImieniu();
+}
+
+void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku() {
+    adresatMenedzer->wyszukajAdresatowPoNazwisku();
+}
+
 void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
     uzytkownikMenedzer.wypiszWszystkichUzytkownikow();
 }
@@ -37,4 +45,12 @@ void KsiazkaAdresowa::wyswietlWszystkichAdresatow() {
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
     uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
+}
+
+void KsiazkaAdresowa::edytujAdresata() {
+    adresatMenedzer->edytujAdresata();
+}
+
+void KsiazkaAdresowa::usunAdresata() {
+    adresatMenedzer->usunAdresata();
 }
