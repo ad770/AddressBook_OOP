@@ -182,6 +182,7 @@ void AdresatMenedzer::usunWybranegoAdresataZPliku(int idUsuwanegoAdresata)
     fstream odczytywanyPlikTekstowy, tymczasowyPlikTekstowy;
     string wczytanaLinia = "";
     int numerWczytanejLinii = 1;
+    bool czyUsunietaLinia = false;
 
     odczytywanyPlikTekstowy.open(nazwaPlikuZAdresatami.c_str(), ios::in);
     tymczasowyPlikTekstowy.open(nazwaTymczasowegoPlikuZAdresatami.c_str(), ios::out | ios::app);
@@ -192,14 +193,15 @@ void AdresatMenedzer::usunWybranegoAdresataZPliku(int idUsuwanegoAdresata)
         {
             // Tych przypadkow jest tyle, gdyz chcemy osiagnac taki efekt,
             // aby na koncu pliku nie bylo pustej linii
-            if (numerWczytanejLinii == idUsuwanegoAdresata) {}
-            else if (numerWczytanejLinii == 1 && numerWczytanejLinii != idUsuwanegoAdresata)
+            if (plikZAdresatami.pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(wczytanaLinia) == idUsuwanegoAdresata)
+                czyUsunietaLinia = true;
+            else if (numerWczytanejLinii == 1 && czyUsunietaLinia == false)
                 tymczasowyPlikTekstowy << wczytanaLinia;
-            else if (numerWczytanejLinii == 2 && idUsuwanegoAdresata == 1)
+            else if (numerWczytanejLinii == 2 && czyUsunietaLinia == true)
                 tymczasowyPlikTekstowy << wczytanaLinia;
-            else if (numerWczytanejLinii > 2 && idUsuwanegoAdresata == 1)
+            else if (numerWczytanejLinii > 2 && czyUsunietaLinia == true)
                 tymczasowyPlikTekstowy << endl << wczytanaLinia;
-            else if (numerWczytanejLinii > 1 && idUsuwanegoAdresata != 1)
+            else if (numerWczytanejLinii > 1 && czyUsunietaLinia == false)
                 tymczasowyPlikTekstowy << endl << wczytanaLinia;
             numerWczytanejLinii++;
         }
